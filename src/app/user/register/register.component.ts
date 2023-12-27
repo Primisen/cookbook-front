@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import IUser from '../../models/user.model';
+import { RegisterValidators } from '../validators/register-validators';
 
 @Component({
   selector: 'app-register',
@@ -46,10 +47,10 @@ export class RegisterComponent {
     name: this.name,
     email: this.email,
     age: this.age,
-    password: this.age,
+    password: this.password,
     confirmPassword: this.confirmPassword,
-    phoneNumber: this.phoneNumber
-  })
+    phoneNumber: this.phoneNumber,
+  }, [RegisterValidators.match('password', 'confirmPassword')])
 
   constructor(
     private authService: AuthService
